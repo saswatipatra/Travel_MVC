@@ -7,8 +7,7 @@ namespace travel_mvc.Controllers
     {
         public IActionResult Index()
         {
-            var allDestinations = Destination.GetDestinations();
-            return View(allDestinations);
+            return View();
         }
     }
 }

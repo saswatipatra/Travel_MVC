@@ -1,0 +1,23 @@
+@{
+    Layout = "_Layout";
+}
+
+@model IEnumerable<travel_mvc.Models.Destination>
+
+<h2>All Destinations</h2>
+<hr />
+<ol>
+    @foreach (var destination in Model)
+    {
+        <li>
+            <ul>
+                <li>Name: @Html.DisplayFor(modelItem => destination.Name)</li>
+                <li>Country: @Html.DisplayFor(modelItem => destination.Country)</li>
+                <li>City: @Html.DisplayFor(modelItem => destination.City)</li>
+                <li>Average Rating: @Html.DisplayFor(modelItem => destination.AvgRating)</li>
+            </ul>
+        </li>
+    }
+</ol>
+<hr>
+@Html.ActionLink("New Destination", "Create")
