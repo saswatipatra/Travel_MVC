@@ -6,6 +6,8 @@
 <hr>
 @using (Html.BeginForm())
 {
+    <input name="DestinationId" type="hidden" value="@ViewBag.DestinationId">
+    
     <div class="form-group">
         <label for="UserName">Your Name</label>
         <input name="UserName" type="text" class="form-control" required>
@@ -20,5 +22,6 @@
     </div>
 
     <input type="submit" value="Add Review" class="btn btn-primary"/><br><br>
-    @Html.ActionLink("Cancel", "Index")
 }
+
+@Html.ActionLink("Cancel", "Details", "Destinations", new { id = @ViewBag.DestinationId })

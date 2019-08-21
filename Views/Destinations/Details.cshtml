@@ -26,6 +26,6 @@
     </ul>
 }
 
-@Html.ActionLink("Add a Review", "Create", "Reviews")
+@Html.ActionLink("Add a Review", "Create", "Reviews", new { id = Model.DestinationId })
 <hr>
 @Html.ActionLink("Back", "Index")
