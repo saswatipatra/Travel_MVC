@@ -39,5 +39,18 @@ namespace travel_mvc.Models
             var destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
             return destinationList;
         }
+
+        public static void PostDestination(Destination destination)
+        {
+            var client = new RestClient("http://localhost:5000/api/");
+            var request = new RestRequest("destinations", Method.POST);
+            request.AddJsonBody(destination);
+            var response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+        }
     }
 }

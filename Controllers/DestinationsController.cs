@@ -14,8 +14,14 @@ namespace travel_mvc.Controllers
 
         public ActionResult Create()
         {
-            // ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Destination destination)
+        {
+            Destination.PostDestination(destination);
+            return RedirectToAction("Index");
         }
     }
 }
