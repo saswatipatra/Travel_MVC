@@ -36,5 +36,19 @@ namespace travel_mvc.Controllers
             Destination.DeleteDestination(id);
             return RedirectToAction("Index");
         }
+
+        
+        public IActionResult Edit(int id)
+        {
+            var particularDestination = Destination.GetPaticularDestinations(id);
+            return View(particularDestination);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Destination destination)
+        {
+            Destination.EditDestination(id,destination);
+            return RedirectToAction("Index");
+        }
     }
 }

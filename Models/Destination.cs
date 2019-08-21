@@ -84,5 +84,20 @@ namespace travel_mvc.Models
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
         }
+
+        // Editing a particular Destination
+        // Add new Destination
+        public static void EditDestination(int id, Destination destination)
+        {
+            var client = new RestClient("http://localhost:5000/api/");
+            var request = new RestRequest("destinations/"+id, Method.PUT);
+            request.AddJsonBody(destination);
+            var response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+        }
     }
 }
