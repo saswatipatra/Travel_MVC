@@ -10,6 +10,7 @@ namespace travel_mvc.Models
 {
     public class Destination
     {
+        public int DestinationId {get; set;}
         public string Name { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
@@ -23,7 +24,7 @@ namespace travel_mvc.Models
             });
             return tcs.Task;
         }
-
+        // Display all Destination
         public static List<Destination> GetDestinations()
         {
             var client = new RestClient("http://localhost:5000/api/");
@@ -40,6 +41,24 @@ namespace travel_mvc.Models
             return destinationList;
         }
 
+        // Display particular destination 
+        public static Destination GetPaticularDestinations(int id)
+        {
+            var client = new RestClient("http://localhost:5000/api/");
+            var request = new RestRequest("destinations/" + id, Method.GET);
+            var response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(response.Content);
+            var thisDestination = JsonConvert.DeserializeObject<Destination>(jsonResponse.ToString());
+            return thisDestination;
+        }
+
+        // Add new Destination
         public static void PostDestination(Destination destination)
         {
             var client = new RestClient("http://localhost:5000/api/");
@@ -52,5 +71,19 @@ namespace travel_mvc.Models
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
         }
+
+        // Delete particular Destination
+        public static void DeleteDestination(int id)
+        {
+            var client = new RestClient("http://localhost:5000/api/");
+            var request = new RestRequest("destinations/{id}", Method.DELETE);
+            var response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+        }
+
     }
 }

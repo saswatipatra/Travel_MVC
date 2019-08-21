@@ -1,0 +1,18 @@
+@{
+    Layout = "_Layout";
+}
+
+@model travel_mvc.Models.Destination
+
+<h2>Destination - @Model.Name</h2>
+<hr />
+<ul>
+    <li>Name: @Html.DisplayFor(modelItem => Model.Name)</li>
+    <li>Country: @Html.DisplayFor(modelItem => Model.Country)</li>
+    <li>City: @Html.DisplayFor(modelItem => Model.City)</li>
+    <li>Average Rating: @Html.DisplayFor(modelItem => Model.AvgRating)</li>
+</ul>
+<hr>
+@Html.ActionLink("Back", "Index")
+@Html.ActionLink("Delete", "Index")
+@Html.ActionLink("Edit", "Index")

@@ -12,6 +12,12 @@ namespace travel_mvc.Controllers
             return View(allDestinations);
         }
 
+        public IActionResult Details(int id)
+        {
+            var particularDestination = Destination.GetPaticularDestinations(id);
+            return View(particularDestination);
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -21,6 +27,13 @@ namespace travel_mvc.Controllers
         public IActionResult Create(Destination destination)
         {
             Destination.PostDestination(destination);
+            return RedirectToAction("Index");
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            Destination.DeleteDestination(id);
             return RedirectToAction("Index");
         }
     }
