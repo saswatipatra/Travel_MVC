@@ -1,0 +1,24 @@
+@{
+    Layout = "_Layout";
+}
+
+<h1>Add a New Review</h1>
+<hr>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label for="UserName">Your Name</label>
+        <input name="UserName" type="text" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="Rating">Rating</label>
+        <input name="Rating" type="number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="ReviewText">Your Review</label>
+        <input name="ReviewText" type="text" class="form-control" required>
+    </div>
+
+    <input type="submit" value="Add Review" class="btn btn-primary"/><br><br>
+    @Html.ActionLink("Cancel", "Index")
+}

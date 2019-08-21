@@ -9,17 +9,17 @@
 {
     <div class="form-group">
         <label for="Name">Name</label>
-        <input name="Name" type="text" class="form-control" required>
+        <input name="Name" type="text" class="form-control" value="@Model.Name" required>
     </div>
     <div class="form-group">
         <label for="Country">Country</label>
-        <input name="Country" type="text" class="form-control" required>
+        <input name="Country" type="text" class="form-control" value="@Model.Country" required>
     </div>
     <div class="form-group">
         <label for="City">City</label>
-        <input name="City" type="text" class="form-control" required>
+        <input name="City" type="text" class="form-control" value="@Model.City" required>
     </div>
 
-    <input type="submit" value="Add Destination" class="btn btn-primary"/><br><br>
+    <input type="submit" value="Save Changes" class="btn btn-primary"/><br><br>
     @Html.ActionLink("Cancel", "Index")
 }

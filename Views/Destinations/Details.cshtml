@@ -5,7 +5,10 @@
 @model travel_mvc.Models.Destination
 
 <h2>Destination - @Model.Name</h2>
-<hr />
+<hr>
+@Html.ActionLink("Edit Destination", "Edit", new { id = Model.DestinationId })<br>
+@Html.ActionLink("Delete Destination", "Delete", new { id = Model.DestinationId })
+<hr>
 <ul>
     <li>Name: @Html.DisplayFor(modelItem => Model.Name)</li>
     <li>Country: @Html.DisplayFor(modelItem => Model.Country)</li>
@@ -13,7 +16,16 @@
     <li>Average Rating: @Html.DisplayFor(modelItem => Model.AvgRating)</li>
 </ul>
 <hr>
-@Html.ActionLink("Edit", "Edit", new { id = Model.DestinationId })<br>
-@Html.ActionLink("Delete", "Delete", new { id = Model.DestinationId })
+<h5>Reviews for @Model.Name</h5>
+@foreach (var review in Model.Reviews)
+{
+    <ul>
+        <li>Author: @review.UserName</li>
+        <li>Rating: @review.Rating</li>
+        <li>Review: @review.ReviewText</li>
+    </ul>
+}
+
+@Html.ActionLink("Add a Review", "Create", "Reviews")
 <hr>
 @Html.ActionLink("Back", "Index")

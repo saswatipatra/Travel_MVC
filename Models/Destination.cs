@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RestSharp;
-using RestSharp.Authenticators;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -15,6 +13,8 @@ namespace travel_mvc.Models
         public string Country { get; set; }
         public string City { get; set; }
         public double AvgRating { get; set; }
+
+        public ICollection<Review> Reviews { get; set; }
 
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
         {
@@ -86,7 +86,6 @@ namespace travel_mvc.Models
         }
 
         // Editing a particular Destination
-        // Add new Destination
         public static void EditDestination(int id, Destination destination)
         {
             var client = new RestClient("http://localhost:5000/api/");

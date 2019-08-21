@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
-// using Microsoft.EntityFrameworkCore;
 using travel_mvc.Models;
 
 namespace travel_mvc.Controllers
