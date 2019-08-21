@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 // using Microsoft.EntityFrameworkCore;
 using travel_mvc.Models;
 
@@ -30,7 +31,6 @@ namespace travel_mvc.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpDelete]
         public IActionResult Delete(int id)
         {
             Destination.DeleteDestination(id);

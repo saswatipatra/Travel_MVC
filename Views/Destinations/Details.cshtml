@@ -13,6 +13,7 @@
     <li>Average Rating: @Html.DisplayFor(modelItem => Model.AvgRating)</li>
 </ul>
 <hr>
+@Html.ActionLink("Edit", "Index")<br>
+@Html.ActionLink("Delete", "Delete", new { id = Model.DestinationId })
+<hr>
 @Html.ActionLink("Back", "Index")
-@Html.ActionLink("Delete", "Index")
-@Html.ActionLink("Edit", "Index")

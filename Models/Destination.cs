@@ -76,7 +76,7 @@ namespace travel_mvc.Models
         public static void DeleteDestination(int id)
         {
             var client = new RestClient("http://localhost:5000/api/");
-            var request = new RestRequest("destinations/{id}", Method.DELETE);
+            var request = new RestRequest("destinations/"+id, Method.DELETE);
             var response = new RestResponse();
 
             Task.Run(async () =>
@@ -84,6 +84,5 @@ namespace travel_mvc.Models
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
         }
-
     }
 }
