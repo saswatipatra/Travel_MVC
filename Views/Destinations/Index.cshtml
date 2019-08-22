@@ -6,17 +6,15 @@
 
 <h2>All Destinations</h2>
 <hr />
-<ol>
-    @foreach (var destination in Model)
-    {
-        <li>
-            <ul>
-                <li>Name: @Html.ActionLink($"{destination.Name}", "Details", new { id = destination.DestinationId})</li>
-                <li>Average Rating: @Html.DisplayFor(modelItem => destination.AvgRating)</li>
-            </ul>
-        </li>
-    }
-</ol>
-@Html.ActionLink("< Previous", "PrevPage") | @Html.ActionLink("Next >", "IndexNext")
+
+@foreach (var destination in Model)
+{
+    <ul>
+        <li>Name: @Html.ActionLink($"{destination.Name}", "Details", new { id = destination.DestinationId})</li>
+        <li>Average Rating: @Html.DisplayFor(modelItem => destination.AvgRating)</li>
+    </ul>
+}
+
+@Html.ActionLink("< Previous", "IndexPrev") | @Html.ActionLink("Next >", "IndexNext")
 <hr>
 @Html.ActionLink("New Destination", "Create")

@@ -61,6 +61,23 @@ namespace travel_mvc.Models
             return destinationList;
         }
 
+        // Display prev page of destinations
+        public static List<Destination> GetPrevDestinations()
+        {
+            var client = new RestClient("http://localhost:5000/api/");
+            var request = new RestRequest("destinations/prev", Method.GET);
+            var response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(response.Content);
+            var destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
+            return destinationList;
+        }
+
         // Display particular destination 
         public static Destination GetPaticularDestinations(int id)
         {
