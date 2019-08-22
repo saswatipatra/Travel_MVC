@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace travel_mvc.Models
 {
@@ -24,11 +26,29 @@ namespace travel_mvc.Models
             });
             return tcs.Task;
         }
-        // Display all Destination
+
+        // Display first page of destinations
         public static List<Destination> GetDestinations()
         {
             var client = new RestClient("http://localhost:5000/api/");
             var request = new RestRequest("destinations", Method.GET);
+            var response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(response.Content);
+            var destinationList = JsonConvert.DeserializeObject<List<Destination>>(jsonResponse.ToString());
+            return destinationList;
+        }
+
+        // Display next page of destinations
+        public static List<Destination> GetNextDestinations()
+        {
+            var client = new RestClient("http://localhost:5000/api/");
+            var request = new RestRequest("destinations/next", Method.GET);
             var response = new RestResponse();
 
             Task.Run(async () =>
@@ -98,5 +118,8 @@ namespace travel_mvc.Models
                 response = await GetResponseContentAsync(client, request) as RestResponse;
             }).Wait();
         }
+
+
+        
     }
 }

@@ -11,6 +11,12 @@ namespace travel_mvc.Controllers
             return View(allDestinations);
         }
 
+        public IActionResult IndexNext()
+        {
+            var nextDestinations = Destination.GetNextDestinations();
+            return View("Index", nextDestinations);
+        }
+
         public IActionResult Details(int id)
         {
             var particularDestination = Destination.GetPaticularDestinations(id);
